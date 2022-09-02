@@ -13,7 +13,7 @@ class Solution(object):
 
     def getKConsistency(self,stock_prices,k):
         res=0
-        map = collections.defaultdict(list)
+        map = collections.defaultdict(list) #map 需要initialize
         #initialize a dict, stock_price->[index1,index2,index3,...]
         for i in range(len(stock_prices)): #range里面是放一个数所以用len包括一下
             map[stock_prices[i]].append(i)
@@ -49,6 +49,15 @@ def main():
     solution = Solution()
     ans=solution.getKConsistency(arr,k)
     print(ans)
+
+    test2 = []
+    test3 = [1,1,1,2]
+    test4 = [3,3,3]
+    test5 = [2,2,4,5,1,2]
+    print("Expected:0  , Actual: ",solution.getKConsistency(test2,3))
+    print("Expected: 3 , Actual: ",solution.getKConsistency(test3,2))
+    print("Expected: 3 , Actual: ",solution.getKConsistency(test4,0))
+    print("Expected: 2 , Actual: ",solution.getKConsistency(test5,2))
     
 if __name__ == "__main__":
     main()
