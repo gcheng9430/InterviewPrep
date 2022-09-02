@@ -16,7 +16,7 @@ class Solution:
             charToIdxList[value].append(idx)
         
         
-        res = 1 #注意！！！！不是1 input有可能是None
+        res = 1 
         #for each value to keep
         for char in charToIdxList:
             idxList = charToIdxList[char]
