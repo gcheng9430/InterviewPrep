@@ -5,16 +5,17 @@ from operator import index
 # analysis: go through list once to initialize dictionary, which is O(n), and sliding window while loop costs O(n)
 # space complexity: O(n)
 # analysis: used a dictionary as extra space, and there are n elements in list
-
+import collections
 
 class Solution(object):
 
 
 
-    def getKConsistency(stock_prices,k):
+    def getKConsistency(self,stock_prices,k):
         res=0
+        map = collections.defaultdict(list)
         #initialize a dict, stock_price->[index1,index2,index3,...]
-        for i in range(len(stock_prices)):
+        for i in range(len(stock_prices)): #range里面是放一个数所以用len包括一下
             map[stock_prices[i]].append(i)
         #go through each unique price in stock_prices
         for num in map:
@@ -45,7 +46,8 @@ def main():
         # k=3
         # arr=[1,2,3,4,5,6,6,6,6,6,6]
         # k=1
-    ans=Solution.getKConsistency(arr,k)
+    solution = Solution()
+    ans=solution.getKConsistency(arr,k)
     print(ans)
     
 if __name__ == "__main__":
