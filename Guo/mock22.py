@@ -29,7 +29,7 @@ def solution(ratings):
     if not ratings:
         return 0
 
-    n = ratings
+    n = len(ratings)
     left = 0
     right = 0
     prev = ratings[0]+1
@@ -49,4 +49,5 @@ def solution(ratings):
     count += (1+leng)*leng//2
     return count 
 
-print('hi')
+ratings = [4,3,5,4,3]
+print("Expected:9, Actual: ",solution(ratings))

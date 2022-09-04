@@ -43,9 +43,25 @@
 # [4,2,2,2]
 # i=1,curr=2
 
+import collections
+
+#possible better： 
+def solution2(execution):
+    #intituion: 记录每个value出现了几次（因为别的value无论怎样变化不会影响这个value 所以可以直接遍历次数 每次加value/2
+    valToFreq = collections.defaultdict(int)
+    for num in execution:
+        valToFreq[num]+=1
+    
+    time = 0
+    for val,freq in valToFreq.items():
+        for i in range(freq):
+            time  += val
+            val = int(round(val/2.0))
+    return time
+
 #runtime O(n^2)
 #space O(n^2)
-import collections
+
 def solution(execution):
     #val->list of idx Hashmap
     valToIdxList = collections.defaultdict(list)
@@ -73,18 +89,6 @@ def solution(execution):
     return time
 
 
-#possible better： 
-def solution2(execution):
-    #intituion: 记录每个value出现了几次（因为别的value无论怎样变化不会影响这个value 所以可以直接遍历次数 每次加value/2
-    valToFreq = collections.defaultdict(int)
-    for num in execution:
-        valToFreq[num]+=1
-    
-    time = 0
-    for val,freq in valToFreq.items():
-        for i in range(freq):
-            time  += val
-            val = int(round(val/2.0))
-    return time
+
 
 

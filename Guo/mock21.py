@@ -38,13 +38,21 @@ def solution(processPower,bootingPower,maxPower):
             monoQ.pop()
         monoQ.append(currBooting)
         #shrink window until requirement met
+
         while monoQ and monoQ[0]+windowSum*(right-left+1)>maxPower:
             leftProcess = processPower[left]
             leftBooting = bootingPower[left]
-            sum -= leftProcess
+            windowSum -= leftProcess
+            left+=1
             if monoQ and monoQ[0]==leftBooting:
-                monoQ = monoQ.popleft()
+                monoQ.popleft()
         #update length
         maxLen = max(maxLen,right-left+1)
         right +=1
+
     return maxLen
+
+processPower=[2,1,3,4,5] 
+bootingPower = [6,6,6,3,4] 
+maxPower = 25
+print("Expected:3, Actual: ",solution(processPower,bootingPower,maxPower))
