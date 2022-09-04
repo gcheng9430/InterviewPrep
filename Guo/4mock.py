@@ -59,6 +59,10 @@ def solution2(execution):
             val = int(round(val/2.0))
     return time
 
+
+
+
+
 #runtime O(n^2)
 #space O(n^2)
 
