@@ -1,48 +1,64 @@
-import collections
-from operator import truediv
+# thoughts: 
 
-#假设可以有重复值
+# time complexity: O(N) in average case and O(N^2)in the worst case, where N is the length of points 
+# space complexity: O(N)
+
+import collections
+import random
+
 
 class Solution(object):
-    def find(self,arr):
-        sorted(arr)
-        res=1
-        found=False
-        map= collections.defaultdict(list)
-        for i in arr:
-            map[i]=False
-        for i in range(len(arr)):
-            if map[arr[i]]:
-                continue
-            if i>0&arr[i]==arr[i-1]:
-                continue
-            count=1
-            cur=arr[i]
-            while cur*cur in map:
-                found=True
-                count=count+1
-                cur=cur*cur
-                map[cur]=True
-            res=max(res,count)
-        return res if found else 0
+    def find(self, points, K):
+        dist = lambda i: points[i][0]**2 + points[i][1]**2
+
+        # sort in ascending order in range[i:j+1]
+        def sort(i, j, K):
+            
+            if i >= j: return
+            # choose random element as pivot
+            k = random.randint(i, j)
+            points[i], points[k] = points[k], points[i]
+
+            mid = partition(i, j)
+            if K < mid - i + 1:
+                sort(i, mid - 1, K)
+            elif K > mid - i + 1:
+                sort(mid + 1, j, K - (mid - i + 1))
+
+        def partition(i, j):
+            oi = i
+            pivot = dist(i)
+            i += 1
+
+            while True:
+                # [oi,i)<pivot (j,oj]>=pivot
+                while i < j and dist(i) < pivot:
+                    i += 1
+                while i <= j and dist(j) >= pivot:
+                    j -= 1
+                if i >= j: break
+                points[i], points[j] = points[j], points[i]
+            # put pivot at right place
+            points[oi], points[j] = points[j], points[oi]
+            return j
+
+        sort(0, len(points) - 1, K)
+        return points[:K]
+    
+
 
 def main():
     solution = Solution()
     
-    test3 = [2,8,9,16,4,3,256,5,288,65536]
-    test4 = [2,8,9,16,4,3]
-    test5 = [2,3,5]
-    test6 = [2]
+    test3 = [[1,2],[3,4],[1,-1]]
+    test4 = [[3,3],[5,-1],[-2,4]]
+    test5 = [[1,0],[9,0],[3,0],[10,0],[5,0]]
+    # test6 = [2]
   
-    print("Expected: 5 , Actual: ",solution.find(test3))
-    print("Expected: 3 , Actual: ",solution.find(test4))
-    print("Expected: 0 , Actual: ",solution.find(test5))
-    print("Expected: 0 , Actual: ",solution.find(test6))
+    print("Expected: [[1,-1],[1,2]] , Actual: ",solution.find(test3,2))
+    print("Expected: [[3,3],[-2,4]] , Actual: ",solution.find(test4,2))
+    print("Expected: [[1,0],[5,0],[3,0]], Actual: ",solution.find(test5,3))
+    # print("Expected: 0 , Actual: ",solution.find(test6))
     
 if __name__ == "__main__":
     main()
-
-
-        
-
-
