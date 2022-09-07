@@ -1,4 +1,9 @@
 
+# time complexity: O(ABlog(A)) in worst case, sort once costs Alog(A), and we sorted B times in total;
+# A is number of INSERT operations, B is number of VIEW operations
+# in left dictionary, thus costs O(n) since the max number of entries in left dict is 26
+# space complexity: O(log(A))  because we used sorting method
+
 
 class Solution(object):
     def find(self,data):
@@ -7,8 +12,10 @@ class Solution(object):
         res=[]
         viewCount=0
         for log in data:
+            # if INSERT, add to the list
             if log[0]=='INSERT':
                 goods.append([log[2],log[1]])
+            # if VIEW, sort and then update result
             elif log[0]=='VIEW':
                 goods.sort()
                 res.append(goods[viewCount][1])

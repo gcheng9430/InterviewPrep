@@ -2,21 +2,35 @@
 import collections
 from turtle import right
 
+# thoughts: use two dictionaries(char->frequency), for each step of iteration, move one char from right
+# dict to left dict, and check how many letters exist both in left and right dict's key set
+
+# time complexity: O(n)
+# analysis: initializing right dict costs O(n); while loop costs O(n) and in each step iterate all entries
+# in left dictionary, thus costs O(n) since the max number of entries in left dict is 26
+# space complexity: O(1)
+# analysis: two dictionaries will in total store 26 character entries at most
+
+
 class Solution(object):
     def find(self,s,k):
         rightDict = collections.defaultdict(int)
         leftDict = collections.defaultdict(int)
         res=0
+        # initiate right dict
         for i in range(len(s)):
             rightDict[s[i]]+=1
         p=0
+        # move letters from right dict to left dict
         while p<len(s):
             count=0
             c=s[p]
             rightDict[c]=rightDict[c]-1
+            # remove key if no longer exist in right dict
             if rightDict[c]==0:
                 rightDict.pop(c)
             leftDict[c]+=1
+            # check each letter in left dict also exist in right dict
             for a in leftDict:
                 if a in rightDict:
                     count=count+1

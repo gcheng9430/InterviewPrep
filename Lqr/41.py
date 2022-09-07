@@ -1,9 +1,9 @@
 import collections
 
 # time complexity: O(n)
-# analysis: 
-# space complexity: O(1)
-# analysis: 
+# analysis: go through songDuration array once
+# space complexity: O(n)
+# analysis: for each element in songDuration array, create an entry in dictionary, at most n entries
 
 class Solution(object):
     def find(self,rideDuration,songDuration):

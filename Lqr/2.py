@@ -1,4 +1,5 @@
-# thoughts: 
+# thoughts: we just need sorting for first k elements, thus we can use quick sorting instead of 
+# sorting the entire list which costs O(Nlog(N))
 
 # time complexity: O(N) in average case and O(N^2)in the worst case, where N is the length of points 
 # space complexity: O(N)
