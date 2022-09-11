@@ -54,10 +54,12 @@ def main():
     test3 = [1,1,1,2]
     test4 = [3,3,3]
     test5 = [2,2,4,5,1,2]
+    test6 = [2]
     print("Expected:0  , Actual: ",solution.getKConsistency(test2,3))
     print("Expected: 3 , Actual: ",solution.getKConsistency(test3,2))
     print("Expected: 3 , Actual: ",solution.getKConsistency(test4,0))
     print("Expected: 2 , Actual: ",solution.getKConsistency(test5,2))
+    print("Expected: 1 , Actual: ",solution.getKConsistency(test6,2))
     
 if __name__ == "__main__":
     main()

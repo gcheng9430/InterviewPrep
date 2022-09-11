@@ -12,7 +12,7 @@ class Solution:
         for i in range(1,len(nums)):
             # diff.append(nums[i]-nums[i-1]) 
             # if diff[-1]<0:
-            #     res += abs(diff[-1])
+            #     res += abs(diff[-1]) 实际不用差分数组
             diff = nums[i]-nums[i-1]
             if diff<0:
                 res += abs(diff)
