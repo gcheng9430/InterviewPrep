@@ -10,7 +10,6 @@ import collections
 class Solution(object):
 
 
-
     def getKConsistency(self,stock_prices,k):
         res=0
         map = collections.defaultdict(list) #map 需要initialize
