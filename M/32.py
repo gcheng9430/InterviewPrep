@@ -3,6 +3,7 @@ def solution(nums):
     min_sum = 0
     max_sum = 0
     n = len(nums)
+
     stack = []
     for next_smaller in range(n+1):
         while stack and (next_smaller == n or nums[stack[-1]]>nums[next_smaller]):
@@ -14,6 +15,12 @@ def solution(nums):
             min_sum += nums[cur_smaller]*(next_smaller - cur_smaller)*(cur_smaller - last_smaller)
         stack.append(next_smaller)
     
+    # [4,-2,-3,4,1]
+    # last index = -1
+    # cur index = 0
+    # next index = 1
+    # min_sum += the frequency of a number that becomes the smallest in a subarray * the number
+
     stack = []
     for next_larger in range(n+1):
         while stack and (next_larger == n or nums[stack[-1]]<nums[next_larger]):

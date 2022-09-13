@@ -2,10 +2,13 @@ def solution(awards, k):
     left = right = 0
     awards.sort()
     ans = 0
+    # sliding window
     while right < len(awards):
+        # if current exceeds k, get a new group
         if awards[right] - awards[left] > k:
             ans += 1
             left = right
+        # greedily add new elements
         right += 1
     return ans+1
 
